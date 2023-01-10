@@ -16,12 +16,10 @@ var version = process.env.BUILD_DATE;
 
 type ContainerAppProps = {
   CounterAppOne: React.LazyExoticComponent<React.ComponentType<{}>>;
-  CounterAppTwo: React.LazyExoticComponent<React.ComponentType<{}>>;
 };
 
 export const ContainerApp = ({
   CounterAppOne,
-  CounterAppTwo,
 }: ContainerAppProps) => {
   return (
     <Center
@@ -64,37 +62,8 @@ export const ContainerApp = ({
               </Button>
             </Box>
           </React.Suspense>
-          <React.Suspense fallback={<Spinner size="xl" />}>
-            <Box
-              p="2rem"
-              border="1px solid #aeaeae"
-              borderRadius="1rem"
-              backgroundColor="#fff"
-            >
-              <Heading color="#6F60EA" mb="1rem">
-                APP-2
-              </Heading>
-              <CounterAppTwo />
-              <Button
-                mt="1rem"
-                w="100%"
-                alignSelf="center"
-                to="/app2"
-                as={RouterLink}
-              >
-                To App2
-              </Button>
-            </Box>
-          </React.Suspense>
         </Flex>
       </Flex>
-      <Link
-        marginTop="5rem"
-        href="https://github.com/ogzhanolguncu/react-typescript-module-federation"
-        target="_blank"
-      >
-        <Image src="./git.png" height="45px" width="45px" />
-      </Link>
     </Center>
   );
 };
