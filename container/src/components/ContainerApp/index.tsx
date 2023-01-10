@@ -21,6 +21,17 @@ type ContainerAppProps = {
 export const ContainerApp = ({
   CounterAppOne,
 }: ContainerAppProps) => {
+  const [number, setNumber] = React.useState(0);
+
+  React.useEffect(() => {
+    window.addEventListener('addValue', (event: any) => {
+        setNumber(event.detail);
+      });
+    return ()=> {
+      window.removeEventListener('addValue', () => {});
+    };
+  },[])
+
   return (
     <Center
       height="100vh"
@@ -54,11 +65,11 @@ export const ContainerApp = ({
               backgroundColor="#fff"
             >
               <Heading color="#6F60EA" mb="1rem">
-                APP-1
+                External APP count {number}
               </Heading>
               <CounterAppOne />
               <Button mt="1rem" w="100%" to="/app1" as={RouterLink}>
-                To App1
+                To App
               </Button>
             </Box>
           </React.Suspense>

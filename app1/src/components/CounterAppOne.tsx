@@ -7,13 +7,22 @@ const Counter = () => {
 
   const location = useLocation();
 
+  const addValue = (count: number) => {
+    const event = new CustomEvent('addValue', { detail: count });
+    window.dispatchEvent(event);
+  }
+
   return (
     <Flex color="#000" gap="1rem" direction="column">
       <Text>
-        Add by one each click <strong>APP-1</strong>
+        Add by one each click <strong>APP</strong>
       </Text>
       <Text>Your click count : {count} </Text>
-      <Button onClick={() => setCount(count + 1)}>Click me</Button>
+      <Button onClick={() => {
+        var sum = count + 1;
+        setCount(sum);
+        addValue(sum);
+      }}>Click me</Button>
       {location.pathname !== "/" && (
         <Button as={Link} to="/">
           Back to container
